@@ -1,4 +1,4 @@
-Gra Kamień, papier, nożyczki
+# Gra Kamień, papier, nożyczki
 
 ----------------------------
 
