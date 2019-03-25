@@ -10,24 +10,22 @@ const game = {
     aiHand: ""
 }
 
-// pobieramy img i tworzymy z nich tablicę
+
 const hands = [...document.querySelectorAll(".select img")];
 
-// pierwsza funkcja
+// player selection function
 function handSelection() {
     game.playerHand = this.dataset.option;
-    // 1 czyści boxShadow we wszysdkich 
     hands.forEach(hand => hand.style.boxShadow = '');
-    // 2 dodaje boxShadow do tego klikniętego
     this.style.boxShadow = '0 0 10px 3px yellow'
 }
 
-// wybór losowy komputera
+// computer selection function
 function computerChoise() {
     return hands[Math.floor(Math.random() * 3)].dataset.option
 }
 
-// zwrócenie wyniku
+// result function
 function checkResult(player, ai) {
     // console.log(player, ai);
     if (player === ai) {
@@ -39,7 +37,7 @@ function checkResult(player, ai) {
     }
 
 }
-// publikacja wyniku
+// publication of results 
 function publishResult(player, ai, result) {
 
     document.querySelector('[data-summary="your-choice"]').textContent = player;
@@ -61,13 +59,13 @@ function publishResult(player, ai, result) {
     }
 }
 
-// funkcja czyszcząca zaznaczenie po każdej grze i wybór playerHand
+// clear computer and player selection function
 function endGame() {
     hands.forEach(hand => hand.style.boxShadow = '');
     game.playerHand = "";
 }
 
-// funkcja sterująca
+// control game function
 function startGame() {
     if (game.playerHand === "") {
         // return kończy działanie i nie idzie dalej
@@ -79,8 +77,7 @@ function startGame() {
     endGame()
 }
 
-//nasłuchiwanie na każdym elemencie talicy hands
+
 hands.forEach(hand => hand.addEventListener('click', handSelection))
 
-//nasłuchiwanie na przycisk Lets Play
 document.querySelector('.start').addEventListener('click', startGame)
